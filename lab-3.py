@@ -36,7 +36,7 @@ def kickoff_subprocess(cmd, log_file_name):
     #Windows
     #process = subprocess.call(['cmd', '/c'], shell=False)
 
-    file = open(log_file_name, "a+")
+    #file = open(log_file_name, "a+")
     timestamp = datetime.datetime.now(datetime.timezone.utc).strftime("%m/%d/%Y, %H:%M:%S")
     output = timestamp + " Command: "+ cmd[0] + " | Return Code: " + str(process) + "\n"
     # context manager https://book.pythontips.com/en/latest/context_managers.html
@@ -46,7 +46,7 @@ def kickoff_subprocess(cmd, log_file_name):
 def upload_output_to_S3(log_file_name):
     # context manager https://book.pythontips.com/en/latest/context_managers.html
     with open(log_file_name, 'rb') as opened_file:
-        file = open(log_file_name, "rb")
+        #file = open(log_file_name, "rb")
         s3.upload_fileobj(file, "<FMI1>", log_file_name)
         file.close()
 
